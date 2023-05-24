@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="d-flex align-items-center justify-content-between">
+    <h1>All Restaurants</h1>
+    <%= link_to "Add a restaurant", new_restaurant_path, class: "btn btn-secondary" %>
+  </div>
+
+  <div class="container d-grid m-3">
+      <div class="row gap-5 justify-content-center align-items-center">
+        <% @restaurants.each do |restaurant| %>
+          <div class="card col-3" style="height: 250px">
+            <%= image_tag "rest.jpg", size: "200", class: "m-3"%>
+            <%= link_to restaurant.name, restaurant_path(restaurant), class: "btn btn-dark m-2" %>
+            <p class="fw-bold text-center"><%= restaurant.category %> Cuisine</p>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h1><%= @restaurant.name %> <small><%= @restaurant.category.capitalize %> Cuisine</small></h1>
+  <div class="d-flex">
+      <p class="bg-secondary text-light p-2 me-2 rounded">Address: <%= @restaurant.address %></p>
+      <p class="bg-secondary text-light p-2 me-2 rounded">Phone Number: <%= @restaurant.phone_number %></p>
+  </div>
+  <div>
+    <h3>Reviews</h3>
+    <% @restaurant.reviews.each do |review| %>
+      <li class="d-flex justify-content-between border p-3 mb-2 align-items-center rounded bg-light">
+        <%= review.content %>
+        <%= link_to "Delete",
+          review_path(review),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+          class: "btn btn-light m-2"
+        %>
+      </li>
+    <% end %>
+  </div>
+
+  <div class="d-flex">
+    <%= link_to "Back to all restaurants", restaurants_path, class: "btn btn-secondary m-2" %>
+    <br>
+    <%= link_to "Delete", restaurant_path(@restaurant), data: { turbo_method: :delete, turbo_confirm: "Are your sure?" }, class:  "btn btn-secondary m-2"%>
+    <br>
+    <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "btn btn-secondary m-2"%>
+    <br>
+    <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-secondary m-2" %>
+    <br>
+  </div>
+</div>
